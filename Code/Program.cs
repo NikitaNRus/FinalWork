@@ -35,7 +35,7 @@ string [] NewArrayCreate (string [] array)
     int count = 0;
     for (int i = 0; i<array.Length;i++)
     {
-        if (array[i].Length>3) count++;
+        if (array[i].Length<=3) count++;
     }
     string [] arrayNew = new string [count];
     return arrayNew;
@@ -43,24 +43,24 @@ string [] NewArrayCreate (string [] array)
 
 string [] FillNewArray(string [] array, string [] array2)
 {
+    int j=0;
     for (int i=0;i<array2.Length;i++)
     {
-        if (array2[i].Length<3)
-        {
-            for (int j=0;j<array.Length;j++)
+        if (array2[i].Length<=3)
+        { 
             array[j]=array2[i];
+            j++;
         }
     }
 return array;
 }
-
 
 string [] massive = CreateArray();
 FillArray(massive);
 Console.WriteLine("Ваш старый массив:");
 PrintArray(massive);
 
-Console.WriteLine("Ваш новый массив:");
 string [] NewMassive = NewArrayCreate(massive);
 FillNewArray(NewMassive,massive);
+Console.WriteLine("Ваш новый массив:");
 PrintArray(NewMassive);
