@@ -30,37 +30,37 @@ void PrintArray (string [] array)
     Console.WriteLine();
 }
 
-void DublCheck (int [] array, int temp, string [] array2)
-{
-    int temp2 = new Random().Next(0,array2.Length);
-        for (int j=0;j<array.Length;j++)
-        {
-            if (array[j]==temp)
-            {
-                DublCheck(array,temp2, array2);
-            }
-            else break;
-        }
+string [] NewArrayCreate (string [] array)
+{   
+    int count = 0;
+    for (int i = 0; i<array.Length;i++)
+    {
+        if (array[i].Length>3) count++;
+    }
+    string [] arrayNew = new string [count];
+    return arrayNew;
 }
 
-string [] NewArray (string [] array)
+string [] FillNewArray(string [] array, string [] array2)
 {
-    
-    string [] NewArray = new string [new Random().Next(3,3)];
-    int [] TempArray = new int [NewArray.Length];
-    for (int i=0;i<NewArray.Length;i++)
+    for (int i=0;i<array2.Length;i++)
     {
-        int temp = new Random().Next(0,array.Length);
-        DublCheck(TempArray, temp, array);
-        NewArray[i] = array[temp];
-        TempArray[i]=temp;
+        if (array2[i].Length<3)
+        {
+            for (int j=0;j<array.Length;j++)
+            array[j]=array2[i];
+        }
     }
-return NewArray;
+return array;
 }
+
 
 string [] massive = CreateArray();
 FillArray(massive);
+Console.WriteLine("Ваш старый массив:");
 PrintArray(massive);
 
-string [] NewMassive = NewArray(massive);
+Console.WriteLine("Ваш новый массив:");
+string [] NewMassive = NewArrayCreate(massive);
+FillNewArray(NewMassive,massive);
 PrintArray(NewMassive);
